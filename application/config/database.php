@@ -59,10 +59,10 @@ $hostname = "";
 $username = ""; 
 $password = "";
 $database = "";
-$connstr = getenv("MYSQLCONNSTR"); 
+$connstr = getenv("defaultConnection"); 
 foreach ($_SERVER as $key => $value) 
 {
-	if (strpos($key, "MYSQLCONNSTR") !== 0) 
+	if (strpos($key, "defaultConnection") !== 0) 
 	{
 		continue;
 	}
