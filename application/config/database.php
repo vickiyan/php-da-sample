@@ -86,8 +86,8 @@ $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 
 $db['development']['hostname'] = $hostname;
-$db['development']['username'] = $username
-$db['development']['password'] = $password
+$db['development']['username'] = $username;
+$db['development']['password'] = $password;
 $db['development']['database'] = $database;
 $db['development']['dbdriver'] = 'mysql';
 $db['development']['dbprefix'] = '';
