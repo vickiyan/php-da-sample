@@ -47,12 +47,27 @@
 
 $active_group = ENVIRONMENT;
 $active_record = TRUE;
-
+/*
 $DefaultConnection = getenv('MYSQLCONNSTR');
 $DefaultConnection = str_replace(";", "&", $DefaultConnection);
 $DefaultConnection = str_replace("Data Source=", "DataSource=", $DefaultConnection);
 $DefaultConnection = str_replace("User Id=", "UserId=", $DefaultConnection);
 parse_str($DefaultConnection, $ConnStrParts);
+*/
+
+$connstr = getenv("MYSQLCONNSTR"); 
+foreach ($_SERVER as $key => $value) 
+{
+	if (strpos($key, "MYSQLCONNSTR") !== 0) 
+	{
+		continue;
+	}
+	$hostname = preg_replace("/^.*Data Source=(.+?);.*$/", "\\1", $value);
+	$username = preg_replace("/^.*User Id=(.+?);.*$/", "\\1", $value);
+	$password = preg_replace("/^.*Password=(.+?)$/", "\\1", $value);
+	$database = preg_replace("/^.*Database=(.+?)$/", "\\1", $value);
+	break;
+}
 
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = '';
@@ -70,10 +85,10 @@ $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 
-$db['development']['hostname'] = $ConnStrParts['DataSource'];
-$db['development']['username'] = $ConnStrParts['UserId'];
-$db['development']['password'] = $ConnStrParts['Password'];
-$db['development']['database'] = $ConnStrParts['Database'];
+$db['development']['hostname'] = $hostname;
+$db['development']['username'] = $username
+$db['development']['password'] = $password
+$db['development']['database'] = $database;
 $db['development']['dbdriver'] = 'mysql';
 $db['development']['dbprefix'] = '';
 $db['development']['pconnect'] = TRUE;
