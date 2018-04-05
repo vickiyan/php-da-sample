@@ -55,6 +55,10 @@ $DefaultConnection = str_replace("User Id=", "UserId=", $DefaultConnection);
 parse_str($DefaultConnection, $ConnStrParts);
 */
 
+$hostname = "";
+$username = ""; 
+$password = "";
+$database = "";
 $connstr = getenv("MYSQLCONNSTR"); 
 foreach ($_SERVER as $key => $value) 
 {
